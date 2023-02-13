@@ -9,6 +9,7 @@ using namespace std;
 
 
 ProductParser::ProductParser()
+ 
 {
 
 }
@@ -129,8 +130,15 @@ std::string ProductBookParser::categoryID()
  * using the data members in this class and the parent ProductParser class
  */
 Product* ProductBookParser::makeProduct()
-{
+{		
+		string category_ID = categoryID();
+		string name = prodName_;
+		double price = price_;
+		int qty = qty_;
+		string isbn = isbn_;
+		string author = author_;
 
+		return new Book(category_ID, name, price, qty, isbn, author);
 
 }
 
@@ -184,9 +192,15 @@ std::string ProductClothingParser::categoryID()
  * using the data members in this class and the parent ProductParser class
  */
 Product* ProductClothingParser::makeProduct()
-{
+{		
+		string category_ID = categoryID();
+		string name = prodName_;
+		double price = price_;
+		int qty = qty_;
+		string size = size_;
+		string brand = brand_;
 
-
+		return new Clothing(category_ID, name, price, qty, size, brand);
 
 }
 
@@ -244,7 +258,15 @@ std::string ProductMovieParser::categoryID()
  * using the data members in this class and the parent ProductParser class
  */
 Product* ProductMovieParser::makeProduct()
-{
+{		
+		string category_ID = categoryID();
+		string name = prodName_;
+		double price = price_;
+		int qty = qty_;
+		string genre = genre_;
+		string rating = rating_;
 
+		return new Movie(category_ID, name, price, qty, genre, rating);
 
 }
+
