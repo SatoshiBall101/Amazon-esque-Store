@@ -130,7 +130,16 @@ int main(int argc, char* argv[])
   
             else if( cmd == "VIEWCART") {
                 ss >> username;
-                ds.viewCart(convToLower(username));
+                hits = ds.viewCart(convToLower(username));
+               
+                 // Reverse the order of the hits vector
+                for (size_t i = 0; i < hits.size() / 2; i++) {
+                Product* temp = hits[i];
+                hits[i] = hits[hits.size() - i - 1];
+                hits[hits.size() - i - 1] = temp;
+                }
+
+                displayProducts(hits);
 							
                 
             }

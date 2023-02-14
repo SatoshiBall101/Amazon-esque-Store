@@ -1,5 +1,6 @@
 #include "mydatastore.h"
 
+
 using namespace std;
 
 MyDataStore::MyDataStore()
@@ -119,16 +120,19 @@ vector<Product*> MyDataStore::search(vector<string>& terms, int type)
 
 }
 
-//vector<Product*> MyDataStore::viewCart(string username) const
-void MyDataStore::viewCart(string username) const
+vector<Product*> MyDataStore::viewCart(string username) const
+//void MyDataStore::viewCart(string username) const
 {
 
 	// check if username is valid
 
+	vector<Product*> retVec = {};
+
 	if(userDB_.find(convToLower(username)) == userDB_.end())
 	{
 		cout << "Invalid Username" << endl;
-		return;
+		vector<Product*> empty;
+		return empty;
 	}
 	else // if it is valid
 	{
@@ -137,13 +141,17 @@ void MyDataStore::viewCart(string username) const
 		it = usrCart_.find(convToLower(username)); // make an itrtr to point at the username/product vector pair
 
 		//for(size_t i = 0; i < .size() - 1; i++)
-		for (vector<Product*>::const_iterator it1 = it->second.begin(); it1 != it->second.end(); ++it1)
+		//for(vector<Product*>::const_reverse_iterator it1 = it->second.rbegin(); it1 != it->second.rend(); ++it1)
+		//for(vector<Product*>::const_iterator it1 = it->second.end() - 1; it1 >= it->second.end(); --it1)
+		for(vector<Product*>::const_iterator it1 = it->second.end() - 1; it1 >= it->second.begin(); --it1)
 		{
-			//cout << it->second[i]->displayString() << endl;
-			cout << (*it1)->displayString() << endl;
+			
+			//cout << (*it1)->displayString() << endl;
+			retVec.push_back(*it1);
 		}
 
 	}
+	return retVec;
 	
 }
 
@@ -177,7 +185,7 @@ void MyDataStore::buyCart(string username)
 
 	vector<Product*>::iterator itv;
 
-	for(itv = it->second.end(); itv != it->second.begin() ; itv--)
+	for(itv = it->second.end() - 1; itv >= it->second.begin() ; itv--)
 	//for(size_t i = 0; i < it->second.size() - 1; i++)
 	{  
 
@@ -196,7 +204,7 @@ void MyDataStore::buyCart(string username)
 
 			(*itv)->subtractQty(1); // update stock info
 
-			cout << "Your purchase of " << usrIt->second->getName() << " has been processed!" << endl;
+			cout << "Your purchase has been processed!" << endl;
 
 		}
 		else

@@ -23,8 +23,8 @@ class MyDataStore : public DataStore
 		void addUser(User* u); //
 		std::vector<Product*> search(std::vector<std::string>& terms, int type);  //
 		// type 1 means AND (intersection), type 2 means OR (union)
-		void viewCart(std::string username) const;
-		//std::vector<Product*> viewCart(std::string username) const; //
+		//void viewCart(std::string username) const;
+		 std::vector<Product*> viewCart(std::string username) const; //
 		void buyCart(std::string username); 
 		void addToCart(std::string username, Product* p); //
 		void dump(std::ostream& ofile); //
