@@ -165,7 +165,7 @@ void displayProducts(vector<Product*>& hits)
     	return;
     }
     std::sort(hits.begin(), hits.end(), ProdNameSorter());
-    for(vector<Product*>::iterator it = hits.begin(); it != hits.end(); ++it) {
+    for(vector<Product*>::iterator it = hits.end() - 1; it >= hits.begin(); --it) {
         cout << "Hit " << setw(3) << resultNo << endl;
         cout << (*it)->displayString() << endl;
         cout << endl;

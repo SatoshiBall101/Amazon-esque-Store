@@ -11,16 +11,16 @@ MyDataStore::MyDataStore()
 MyDataStore::~MyDataStore()
 {
 	
-	vector<Product*>::iterator it5;
-	for (it5 = productDB_.begin(); it5 != productDB_.end(); ++it5) 
+	vector<Product*>::iterator it1;
+	for (it1 = productDB_.begin(); it1 != productDB_.end(); ++it1) 
 	{
-  	delete *it5;
+  	delete *it1;
 	}
 
-	map<std::string, User*>::iterator it6;
-	for (it6 = userDB_.begin(); it6 != userDB_.end(); ++it6) 
+	map<std::string, User*>::iterator it2;
+	for (it2 = userDB_.begin(); it2 != userDB_.end(); ++it2) 
 	{
-  	delete it6->second;
+  	delete it2->second;
 	}
 	
 }
@@ -140,13 +140,9 @@ vector<Product*> MyDataStore::viewCart(string username) const
 
 		it = usrCart_.find(convToLower(username)); // make an itrtr to point at the username/product vector pair
 
-		//for(size_t i = 0; i < .size() - 1; i++)
-		//for(vector<Product*>::const_reverse_iterator it1 = it->second.rbegin(); it1 != it->second.rend(); ++it1)
-		//for(vector<Product*>::const_iterator it1 = it->second.end() - 1; it1 >= it->second.end(); --it1)
 		for(vector<Product*>::const_iterator it1 = it->second.end() - 1; it1 >= it->second.begin(); --it1)
 		{
 			
-			//cout << (*it1)->displayString() << endl;
 			retVec.push_back(*it1);
 		}
 
